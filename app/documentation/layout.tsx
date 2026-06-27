@@ -6,15 +6,13 @@ export default function DocsLayout({
 }: {
     children: React.ReactNode
 }) {
-    const docs = getAllDocs().sort(
-        (a, b) => a.order - b.order
-    )
+    const docs = getAllDocs()
 
     return (
-        <div className="flex">
-            <DocsSidebar docs={docs}/>
+        <div className="flex min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.08),_transparent_28%)]">
+            <DocsSidebar docs={docs} />
 
-            <main className="flex-1 p-10">
+            <main className="flex-1 bg-transparent">
                 {children}
             </main>
         </div>

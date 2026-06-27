@@ -1,0 +1,41 @@
+---
+title: Mathematical Notation
+slug: mathematical-notation
+order: 5
+description: Conventions for mathematical notation and symbolic references in the documentation
+---
+
+# Mathematical Notation
+
+The documentation uses a compact notation that mirrors common mathematical writing while remaining readable in code and prose.
+
+## Core conventions
+
+- Scalars are written as lowercase Latin letters such as $x$, $y$, and $z$.
+- Sets and structured spaces are written with uppercase calligraphic or bold symbols such as $\mathbb{R}$ and $\mathbb{Z}$.
+- Elements of a group or ring are written as lowercase letters, while the operation itself is written as $\oplus$ or $\cdot$ when helpful.
+- Functions are usually written as $f: X \to Y$ to make the domain and codomain explicit.
+
+## Examples
+
+For a cyclic group of order $n$, the element $g$ generates the set
+
+$$
+\langle g \rangle = \{e, g, g^2, \dots, g^{n-1}\}
+$$
+
+and the group law is often written as
+
+$$
+a \oplus b = c
+$$
+
+where $a, b, c \in G$.
+
+## Notation in code
+
+- Use `Group<T>` when describing algebraic structure generically.
+- Use `Morphism<A, B>` for maps from $A$ to $B$.
+- Use `Distribution<T>` for probabilistic objects over values of type $T$.
+
+These conventions help keep the prose, examples, and implementation vocabulary aligned.

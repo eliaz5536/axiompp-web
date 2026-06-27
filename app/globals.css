@@ -58,25 +58,6 @@ code {
 }
 
 
-/* Code syntax for line numbers */
-pre code {
-  counter-reset: line;
-}
-
-pre code > span {
-  display: block;
-  counter-increment: line;
-}
-
-pre code > span::before {
-  content: counter(line);
-  display: inline-block;
-  width: 2rem;
-  margin-right: 1rem;
-  color: #666;
-}
-
-
 
 .token-keyword {
   color: #569cd6;

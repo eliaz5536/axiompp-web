@@ -233,7 +233,6 @@ int main() {
               title: 'Symbolic Mathematics',
               description: 'Using SymPy for symbolic computation, equation solving, and mathematical analysis.',
               code: `import sympy as sp
-
 # Define symbols
 x, y = sp.symbols('x y')
 

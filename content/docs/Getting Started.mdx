@@ -1,0 +1,40 @@
+---
+title: Getting Started
+slug: getting-started
+order: 2
+description: Quick examples of C++/Python code
+---
+
+# Getting Started
+
+## C++ Quick Example
+```cpp
+#include <axiom/group.hpp>
+
+using namespace axiom;
+
+int main() {
+    
+    cyclic_group<int> Z5(5);
+
+    auto a = Z5.element(2);
+    auto b = Z5.element(4);
+
+    auto c = a + b;
+
+    std::cout << c.value(); // 1 mod 5
+}
+
+```
+
+## Python Quick Example
+```python
+from axiom import Group
+
+Z5 = Group.cyclic(5)
+
+a = Z5(2)
+b = Z5(4)
+
+print(a + b)
+```

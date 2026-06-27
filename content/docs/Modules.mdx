@@ -1,0 +1,106 @@
+---
+title: Modules
+slug: modules
+order: 4
+description: Mathematical domains
+---
+
+# Core Concepts
+
+# Mathematical Structures
+Axiom++ represents mathematics as computational objects. 
+
+## Examples
+| **Mathematical Concept** | **Axiom++ Representation** |
+|--------------------------|----------------------------|
+| Group                    | Group<T>                   |
+| Ring                     | Ring<T>                    |
+| Field                    | Field<T>                   |
+| Morphism                 | Morphism<A, B>             |
+| Functor                  | Functor<F>                 |
+| Distribution             | Distribution<T>            |
+
+---
+
+# Modules
+# Abstract Algebra Module
+## Features
+* Groups
+* Rings
+* Fields
+* Modules
+* Semigroups
+* Monoids
+* Homomorphisms
+* Isomorphisms
+
+## Example: Cyclic Group
+### C++ 
+```cpp
+cyclic_group<int> Z7(7);
+
+auto a = Z7.element(3);
+auto b = Z7.element(5);
+
+auto result = a + b;
+```
+
+### Python
+```python
+Z7 = Group.cyclic(7)
+
+a = Z7(3)
+b = Z7(5)
+
+print(a + b)
+```
+
+--- 
+
+## Example: Morphism
+### C++
+```cpp
+auto f = morphism<int, int>(
+    [](int x) { return x + 1; }
+);
+```
+
+### Python
+```python
+f = Morphism(lambda x : x + 1)
+```
+
+---
+
+# Number Theory Module
+## Features
+* Prime arithmetic
+* Modular arithmetic
+* Congruence systems
+* Cryptographic operations
+
+## Example: Modular Arithmetic
+### Python
+```python
+from axiom.number import mod
+print(mod(17, 5))
+```
+
+---
+
+# Statistics & Probability Module
+## Features: 
+* Random variables
+* Bayesian inference
+* Statistical distributions
+* Sampling utilities
+
+## Example: Normal Distribution
+### Python
+```python
+from axiom.stats import Normal
+
+distribution = Normal(mean=0, stddev=1)
+
+print(distribution.sample())
+```

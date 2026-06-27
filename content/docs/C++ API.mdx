@@ -1,0 +1,64 @@
+---
+title: C++ API
+slug: cpp-api
+order: 5
+description: Full C++ API documentation
+---
+
+# C++ API Documentation
+## Namespace Structure
+```
+axiom::
+algebra::
+category::
+types::
+number::
+stats::
+```
+
+## Core Headers
+| **Header**       | **Description**     |
+|------------------|---------------------|
+| group.hpp        | Group structures    |
+| ring.hpp         | Ring abstractions   |
+| field.hpp        | Field operations    |
+| morphism.hpp     | Category morphisms  |
+| distribution.hpp | Probability systems |
+
+
+---
+
+
+## Common Classes
+### Group
+```cpp
+template<typename T>
+class Group;
+```
+### Functions
+| **Function**  | **Description**          |
+|---------------|--------------------------|
+| identity()    | Returns identity element |
+| inverse(x)    | Returns inverse          |
+| compose(a, b) | Performs operation       |
+| order()       | Returns group order      |
+
+
+---
+
+
+### Morphism
+```cpp
+template<typename A, typename B>
+class Morphism;
+```
+### Functions
+| **Function** | **Description**    |
+|--------------|--------------------|
+| apply(x)     | Applies morphism   |
+| compose(f)   | Composes morphisms |
+| domain()     | Returns domain     |
+| codomain()   | Returns codomain   |
+
+
+---

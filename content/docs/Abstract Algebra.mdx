@@ -16,13 +16,19 @@ Group in Abstract Algebra is a set equipped with a binary operation that satisfi
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+    Group<int> additiveGroup(
+        {0, 1, 2},
+        [](const int& a, const int& b) { return (a + b) % 3; },
+        0
+    );
+    std::cout << "Group is closed: " << std::boolalpha << additiveGroup.isClosed() << "\n";
+    std::cout << "Group is associative: " << additiveGroup.isAssociative() << "\n";
+    std::cout << "Group has inverses: " << additiveGroup.hasInverses() << "\n";
+    std::cout << "Group order: " << additiveGroup.order() << "\n";
+
     return 0;
 }
 ```
-
 
 # Ring
 Ring in Abstract Algebra is a set equipped with two binary operations, typically called addition and multiplication, that satisfy certain properties. Rings are used to study algebraic structures that generalize the arithmetic of integers and polynomials.
@@ -30,9 +36,16 @@ Ring in Abstract Algebra is a set equipped with two binary operations, typically
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+    Ring<int> z2Ring(
+        {0, 1},
+        [](const int& a, const int& b) { return (a + b) % 2; },
+        [](const int& a, const int& b) { return (a * b) % 2; },
+        0,
+        1
+    );
+    std::cout << "Ring is valid: " << std::boolalpha << isRing(z2Ring) << "\n";
+    std::cout << "Ring has unity: " << hasUnity(z2Ring) << "\n";
+
     return 0;
 }
 ```
@@ -43,9 +56,17 @@ Field in Abstract Algebra is a set equipped with two binary operations, addition
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+    Field<int> f2Field(
+        {0, 1},
+        [](const int& a, const int& b) { return (a + b) % 2; },
+        [](const int& a, const int& b) { return (a * b) % 2; },
+        [](const int& a) { return a; },
+        0,
+        1
+    );
+    std::cout << "Field is valid: " << std::boolalpha << isField(f2Field) << "\n";
+    std::cout << "Field has multiplicative inverses: " << allNonZeroHaveInverses(f2Field) << "\n"
+
     return 0;
 }
 ```

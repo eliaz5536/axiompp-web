@@ -21,39 +21,30 @@ Category is a mathematical structure that consists of objects and morphisms (arr
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    Category<int> category;
+    category.addObject(0);
+    category.addObject(1);
+    Morphism<int, int> doubleIt(0, 0, [](const int& value) { return value * 2; });
+    Morphism<int, int> addOne(0, 0, [](const int& value) { return value + 1; });
+    auto composed = category.compose(doubleIt, addOne);
+    auto id0 = category.identity(0);
+    std::cout << "Category object count: " << category.getObjects().size() << "\n";
+    std::cout << "Identity morphism on 0: " << id0.apply(4) << "\n";
+    std::cout << "Composition of double and add-one: " << composed.apply(3) << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
 # Arrow 
 Arrow is a morphism between two objects in a category. It represents a relationship or transformation from one object to another, and can be thought of as a directed edge in a graph.
 
-
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    Arrow<int, int> incrementArrow("succ", 0, 0, [](const int& value) { return value + 1; });
+    std::cout << "Arrow name: " << incrementArrow.getName() << " -> " << incrementArrow(4) << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -62,18 +53,14 @@ Morphism is a structure-preserving map between two objects in a category. It rep
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    Morphism<int, std::string> stringify(
+        0,
+        std::string("text"),
+        [](const int& value) { return std::to_string(value); }
+    );
+    std::cout << "Morphism: " << stringify.apply(42) << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -82,18 +69,15 @@ Isomorphism is a morphism that has an inverse, meaning that it can be reversed. 
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    Morphism<std::string, int> parse(
+        std::string("text"),
+        0,
+        [](const std::string& value) { return std::stoi(value); }
+    );
+    Isomorphism<int, std::string> iso(stringify, parse);
+    std::cout << "Isomorphism round-trip: " << iso.inverse.apply("7") << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -102,18 +86,16 @@ Natural Transformation is a way of transforming one functor into another while p
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    Functor<int, int> identityFunctor(
+        [](const int& value) { return value; },
+        [](const Morphism<int, int>& morph) { return morph; }
+    );
+    NaturalTransformation<int, int> eta(&integerFunctor, &identityFunctor);
+    eta.addComponent(0, Morphism<int, int>(0, 0, [](const int& value) { return value + 1; }));
+    std::cout << "Natural transformation has component 0: " << std::boolalpha << eta.hasComponent(0) << "\n";
+    std::cout << "Natural transformation naturality check: " << eta.isNatural(Morphism<int, int>(0, 0, [](const int& value) { return value; })) << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -122,18 +104,17 @@ Object is an entity in a category that can be related to other objects through m
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+    Object objectA("A");
+    Object objectB("B");
+    Category<Object> objectCategory;
+    objectCategory.addObject(objectA);
+    objectCategory.addObject(objectB);
+    auto objectIdentity = objectCategory.identity(objectA);
+    std::cout << "Object category objects: " << objectCategory.getObjects().size() << "\n";
+    std::cout << "Object demo: " << objectA.getName() << " and " << objectB.getName() << "\n";
+    std::cout << "Object identity on A: " << objectIdentity.apply(objectA).getName() << "\n";
+        
     return 0;
-}
-```
-
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
 }
 ```
 
@@ -142,18 +123,10 @@ Product is a construction in category theory that combines two objects into a ne
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    ProductObj<int, int> product(2, 3);
+    std::cout << "Product object: {" << product.first << ", " << product.second << "}\n"; 
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -162,60 +135,43 @@ Pullback is a construction in category theory that combines two objects along a 
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+
+    try {
+        auto pull = pullback(alpha, euclideanSpace, euclideanSpace);
+        std::cout << "Pullback degree: " << pull.degree() << "\n";
+    }
+    catch(const std::logic_error&) {
+        std::cout << "Pullback: placeholder implementation\n";
+    }
+
     return 0;
 }
 ```
-
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
-}
-```
-
 
 # Pushout
 Pushout is a construction in category theory that combines two objects along a common morphism, resulting in a new object that represents the "best approximation" of the two original objects. It is a way to combine mathematical structures while preserving their relationships.
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+    PushoutObj<int, int> pushout({1, 2}, {3});
+    std::cout << "Pushout left size: " << pushout.left.size() << ", right size: " << pushout.right.size() << "\n";
+
     return 0;
 }
 ```
-
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
-}
-```
-
 
 # Coequalizer
 Coequalizer is a construction in category theory that identifies two morphisms between two objects, resulting in a new object that represents the "best approximation" of the two original objects. It is a way to combine mathematical structures while preserving their relationships.
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    auto coequalizerMap = coequalizer(
+        Morphism<int, int>(0, 0, [](const int& value) { return value + 1; }),
+        Morphism<int, int>(0, 0, [](const int& value) { return value + 2; })
+    );
+    std::cout << "Coequalizer codomain: " << coequalizerMap.getCodomain() << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -224,18 +180,10 @@ Coproduct is a construction in category theory that combines two objects into a 
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    CoproductObj<int> coproduct(1, 2);
+    std::cout << "Coproduct object: {" << coproduct.A << ", " << coproduct.B << "}\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -244,18 +192,14 @@ Equalizer is a construction in category theory that identifies the largest subob
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    auto equalizerSet = equalizer(
+        Morphism<int, int>(0, 0, [](const int& value) { return value * 2; }),
+        Morphism<int, int>(0, 0, [](const int& value) { return value + 2; }),
+        std::vector<int>{0, 1, 2, 3, 4}
+    );
+    std::cout << "Equalizer size: " << equalizerSet.size() << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -264,40 +208,34 @@ Functor is a mapping between categories that preserves the structure of the cate
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+    Functor<int, int> integerFunctor(
+        [](const int& value) { return value + 10; },
+        [](const Morphism<int, int>& morph) {
+            return Morphism<int, int>(morph.getDomain(), morph.getCodomain(),
+                [morph](const int& value) { return morph(value) + 10; });
+        }
+    );
+    std::cout << "Functor object map: " << integerFunctor.mapObject(3) << "\n";
+
     return 0;
 }
 ```
-
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
-}
-```
-
 
 # Set Category
 Set Category is a category whose objects are sets and whose morphisms are functions between those sets. It provides a framework for studying relationships between sets and their functions in a highly abstract way.
 
-
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    SetObject<int> setA(std::set<int>{1, 2});
+    SetObject<int> setB(std::set<int>{3, 4});
+    SetCategory<int> setCategory;
+    setCategory.addObject(setA);
+    setCategory.addObject(setB);
+    auto setIdentity = setCategory.identity(setA);
+    std::cout << "Set category object count: " << setCategory.getObjects().size()
+        << ", identity size: " << setIdentity(setA).elements.size() << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -306,18 +244,19 @@ Group Category is a category whose objects are groups and whose morphisms are gr
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
-    return 0;
-}
-```
+    Group<int> additiveGroup(
+        {0, 1, 2},
+        [](const int& a, const int& b) { return (a + b) % 3; },
+        0
+    );
+    GroupObject<int> groupObject(&additiveGroup);
+    GroupCategory<int> groupCategory;
+    groupCategory.addObject(groupObject);
+    auto groupIdentity = groupCategory.identity(groupObject);
+    std::cout << "Group category object count: " << groupCategory.getObjects().size()
+        << ", identity applied: " << groupIdentity(groupObject).group->order() << "\n";
 
-```python
-main() {
-    a = 5 # positive integer
-    b = -3 # negative integer
-    c = 0 # zero
+    return 0;
 }
 ```
 
@@ -326,9 +265,20 @@ Ring Category is a category whose objects are rings and whose morphisms are ring
 
 ```cpp
 int main() {
-    int a = 5; // positive integer
-    int b = -3; // negative integer
-    int c = 0; // zero
+    Ring<int> z2Ring(
+        {0, 1},
+        [](const int& a, const int& b) { return (a + b) % 2; },
+        [](const int& a, const int& b) { return (a * b) % 2; },
+        0,
+        1
+    );
+    RingObject<int> ringObject(&z2Ring);
+    RingCategory<int> ringCategory;
+    ringCategory.addObject(ringObject);
+    auto ringIdentity = ringCategory.identity(ringObject);
+    std::cout << "Ring category object count: " << ringCategory.getObjects().size()
+        << ", identity applied: " << ringIdentity(ringObject).ring->getElements().size() << "\n";
+
     return 0;
 }
 ```

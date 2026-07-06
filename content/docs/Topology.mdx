@@ -14,68 +14,52 @@ Topology is essential in various areas of mathematics, including analysis, geome
 Compactness is a topological property that generalizes the notion of closed and bounded subsets in Euclidean space. A topological space is compact if every open cover has a finite subcover. Compactness is an important concept in analysis and topology, as it allows for the extension of certain properties from finite sets to infinite sets.
 
 ```cpp
-int main() {
-    OpenSet<int> openSet({1, 2});
-    std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
-    std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
+OpenSet<int> openSet({1, 2});
+std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
+std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
 
-    OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
-    std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
-    std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
-    std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
-    
-    return 0;
-}
+OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
+std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
+std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
+std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
 ```
 
 # Connectedness
 Connectedness is a topological property that describes the extent to which a space is "in one piece." A topological space is connected if it cannot be divided into two disjoint non-empty open sets. Connectedness is an important concept in topology, as it provides insight into the structure and behavior of spaces.
 ```cpp
-int main() {
-    OpenSet<int> openSet({1, 2});
-    std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
-    std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
+OpenSet<int> openSet({1, 2});
+std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
+std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
 
-    OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
-    std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
-    std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
-    std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
-    
-    return 0;
-}
+OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
+std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
+std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
+std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
 ```
 
 # Connectedness
 Connectedness is a topological property that describes the extent to which a space is "in one piece." A topological space is connected if it cannot be divided into two disjoint non-empty open sets. Connectedness is an important concept in topology, as it provides insight into the structure and behavior of spaces.
 ```cpp
-int main() {
-    OpenSet<int> openSet({1, 2});
-    std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
-    std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
+OpenSet<int> openSet({1, 2});
+std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
+std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
 
-    OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
-    std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
-    std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
-    std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
-   
-    return 0;
-}
+OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
+std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
+std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
+std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
 ```
 
 # Continuity
 Continuity is a fundamental concept in topology that describes the behavior of functions between topological spaces. A function is continuous if the preimage of every open set is open. Continuity is essential in understanding the relationships between different spaces and the behavior of functions defined on them.
 
 ```cpp
-int main() {
-    ContinuousMap<int, int> identity(
-        [](int x) { return x; },
-        space,
-        space
-    );
-    std::cout << "Continuity: " << std::boolalpha << identity.isContinuous() << "\n";
-
-    return 0;
-}
+ContinuousMap<int, int> identity(
+    [](int x) { return x; },
+    space,
+    space
+);
+std::cout << "Continuity: " << std::boolalpha << identity.isContinuous() << "\n";
 ```
 
 # Homeomorphism
@@ -83,158 +67,110 @@ Homeomorphism is a bijective continuous function between two topological spaces 
 
 
 ```cpp
-int main() {
-    ContinuousMap<int, int> forward([](int x) { return x; }, space, space);
-    ContinuousMap<int, int> inverse([](int x) { return x; }, space, space);
-    Homeomorphism<int, int> homeomorphism(forward, inverse);
-    std::cout << "Homeomorphism: " << std::boolalpha << homeomorphism.isHomeomorphism() << "\n";    
-
-    return 0;
-}
+ContinuousMap<int, int> forward([](int x) { return x; }, space, space);
+ContinuousMap<int, int> inverse([](int x) { return x; }, space, space);
+Homeomorphism<int, int> homeomorphism(forward, inverse);
+std::cout << "Homeomorphism: " << std::boolalpha << homeomorphism.isHomeomorphism() << "\n";    
 ```
 
 # Homotopy
 Homotopy is a concept in topology that describes a continuous deformation of one function into another. Two functions are homotopic if there exists a continuous family of functions that connects them. Homotopy is an important tool in algebraic topology, as it allows for the classification of spaces based on their topological properties.
 
 ```cpp
-int main() {
-    Homotopy<int, int> homotopy(
-        forward,
-        inverse,
-        [](int x, double t) { return static_cast<int>(x + t); }
-    );
-    std::cout << "Homotopy: " << std::boolalpha << homotopy.isContinuous() << "\n";
-
-    return 0;
-}
+Homotopy<int, int> homotopy(
+    forward,
+    inverse,
+    [](int x, double t) { return static_cast<int>(x + t); }
+);
+std::cout << "Homotopy: " << std::boolalpha << homotopy.isContinuous() << "\n";
 ```
 
 # Open Cover
 Open cover is a collection of open sets that together cover a topological space. An open cover is used to study the properties of spaces, such as compactness and connectedness. The concept of open covers is fundamental in topology and plays a crucial role in various theorems and proofs.
 
 ```cpp
-int main() {
-    OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
-    std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
-    std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
-    std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
-    
-    return 0;
-}
+OpenCover<int> cover({openSet, OpenSet<int>({2, 3})});
+std::cout << "OpenCover covers space: " << std::boolalpha << cover.covers(space) << "\n";
+std::cout << "Compactness: " << std::boolalpha << Compactness<int>::isCompact(space, cover) << "\n";
+std::cout << "Connectedness: " << std::boolalpha << Connectedness<int>::isConnected(space) << "\n";
 ```
 
 # Open Set
 Open set is a fundamental concept in topology that describes a set of points in a topological space that contains a neighborhood around each of its points. Open sets are used to define the topology of a space and are essential in understanding the properties of spaces and functions defined on them.
 
 ```cpp
-int main() {
-    OpenSet<int> openSet({1, 2});
-    std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
-    std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
-
-    return 0;
-}
+OpenSet<int> openSet({1, 2});
+std::cout << "OpenSet cardinality: " << openSet.cardinality() << "\n";
+std::cout << "OpenSet contains point 1: " << std::boolalpha << openSet.contains(1) << "\n";
 ```
 
 # Path
 Path is a continuous function from the unit interval [0, 1] to a topological space. Paths are used to study the connectedness and homotopy properties of spaces. A space is path-connected if any two points can be joined by a path.
 
 ```cpp
-int main() {
-    Path<int> path([](double t) { return static_cast<int>(t * 2.0); });
-    std::cout << "Path start: " << path.start() << "\n";
-    std::cout << "Path end: " << path.end() << "\n";
-    std::cout << "Path loop: " << std::boolalpha << path.isLoop() << "\n";
-
-    return 0;
-}
+Path<int> path([](double t) { return static_cast<int>(t * 2.0); });
+std::cout << "Path start: " << path.start() << "\n";
+std::cout << "Path end: " << path.end() << "\n";
+std::cout << "Path loop: " << std::boolalpha << path.isLoop() << "\n";
 ```
 
 # Path Connectedness
 Path connectedness is a topological property that describes the ability to connect any two points in a space with a continuous path. A space is path-connected if for any two points, there exists a continuous function (path) that connects them. Path connectedness is an important concept in topology, as it provides insight into the structure and behavior of spaces.
 
 ```cpp
-int main() {
-    std::cout << "Path Connectedness: " << std::boolalpha
-        << PathConnectedness<int>::test(space, [](int a, int b) {
-            return Path<int>([=](double t) {
-                return static_cast<int>(a + (b - a) * t);
-            });
-        }) << "\n";
-
-    return 0;
-}
+std::cout << "Path Connectedness: " << std::boolalpha
+    << PathConnectedness<int>::test(space, [](int a, int b) {
+        return Path<int>([=](double t) {
+            return static_cast<int>(a + (b - a) * t);
+        });
+    }) << "\n";
 ```
 
 # Product Point
 Product point is a concept in topology that describes the Cartesian product of two topological spaces. The product topology is defined on the Cartesian product of two spaces, and it allows for the study of the properties of the combined space based on the properties of the individual spaces.
 
 ```cpp
-int main() {
-    ProductPoint<int, int> productPoint(1, 2);
-    std::cout << "Product Point: (" << productPoint.first << ", " << productPoint.second << ")\n";
-    
-    return 0;
-}
+ProductPoint<int, int> productPoint(1, 2);
+std::cout << "Product Point: (" << productPoint.first << ", " << productPoint.second << ")\n";
 ```
 
 # Product Topology
 Product Topology is a topological structure defined on the Cartesian product of two or more topological spaces. The product topology is generated by the basis consisting of products of open sets from each space. It allows for the study of the properties of the combined space based on the properties of the individual spaces.
 
 ```cpp
-int main() {
-    ProductTopology<int, int> productTopology(xSpace, ySpace);
-    std::cout << "Product Topology space size: " << productTopology.space().universe().size() << "\n";
-
-    return 0;
-}
+ProductTopology<int, int> productTopology(xSpace, ySpace);
+std::cout << "Product Topology space size: " << productTopology.space().universe().size() << "\n";
 ```
 
 # Quotient Point
 Quotient point is a concept in topology that describes the identification of points in a topological space based on an equivalence relation. The quotient topology is defined on the set of equivalence classes, and it allows for the study of the properties of the resulting space based on the properties of the original space.
 
 ```cpp
-int main() {
-    QuotientPoint<int> quotientPoint({1, 2});
-    std::cout << "Quotient Point size: " << quotientPoint.elements().size() << "\n";
-
-    return 0;
-}
+QuotientPoint<int> quotientPoint({1, 2});
+std::cout << "Quotient Point size: " << quotientPoint.elements().size() << "\n";
 ```
 
 # Quotient Topology
 Quotient Topology is a topological structure defined on the set of equivalence classes of a topological space under an equivalence relation. The quotient topology is generated by the open sets in the original space, and it allows for the study of the properties of the resulting space based on the properties of the original space.
 
 ```cpp
-int main() {
-    QuotientTopology<int> quotientTopology(space, {{1, 2}, {3}});
-    std::cout << "Quotient Topology space size: " << quotientTopology.space().universe().size() << "\n";
-
-    return 0;
-}
+QuotientTopology<int> quotientTopology(space, {{1, 2}, {3}});
+std::cout << "Quotient Topology space size: " << quotientTopology.space().universe().size() << "\n";
 ```
 
 # Subspace Topology
 Subspace Topology is a topological structure defined on a subset of a topological space. The subspace topology is generated by the open sets in the original space that intersect with the subset. It allows for the study of the properties of the subset based on the properties of the original space.
 
 ```cpp
-int main() {
-    SubspaceTopology<int> subspaceTopology(space, std::set<int>{1, 2});
-    std::cout << "Subspace Topology size: " << subspaceTopology.space().universe().size() << "\n";
-    std::cout << "Subspace Topology contains point 2: " << std::boolalpha << subspaceTopology.contains(2) << "\n";    
-
-    return 0;
-}
+SubspaceTopology<int> subspaceTopology(space, std::set<int>{1, 2});
+std::cout << "Subspace Topology size: " << subspaceTopology.space().universe().size() << "\n";
+std::cout << "Subspace Topology contains point 2: " << std::boolalpha << subspaceTopology.contains(2) << "\n";    
 ```
 
 # Topological Space
 Topological Space is a fundamental concept in topology that describes a set of points along with a collection of open sets that satisfy certain axioms. A topological space provides a framework for studying the properties of spaces and the relationships between different mathematical objects.
 
 ```cpp
-int main() {
-    TopologicalSpace<int> xSpace({1, 2}, topology);
-    TopologicalSpace<int> ySpace({2, 3}, topology);
-
-    return 0;
-}
+TopologicalSpace<int> xSpace({1, 2}, topology);
+TopologicalSpace<int> ySpace({2, 3}, topology);
 ```

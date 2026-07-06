@@ -11,15 +11,11 @@ Number theory is a branch of mathematics that studies integers and their propert
 # Integer
 A whole number that can be positive, negative, or zero. Integers are denoted by the symbol Z.
 ```cpp
-int main() {
-    Integer x = -7;
-    Integer y = 4;
-    Integer z = x * y;
+Integer x = -7;
+Integer y = 4;
+Integer z = x * y;
 
-    std::cout << "Integer: " << x << " * " << y << " = " << (x * y) << "\n";    
-    
-    return z;
-}
+std::cout << "Integer: " << x << " * " << y << " = " << (x * y) << "\n";    
 ```
 
 # Natural
@@ -28,72 +24,58 @@ Positive integers starting from 1, denoted by the symbol N. Natural numbers are 
 Natural numbers never include negative numbers or zero. It can also never include fractions or decimals. The set of natural numbers is infinite, and it is often represented as {1, 2, 3, 4, ...}.
 
 ```cpp
-int main() {
-    Natural a = 5;
-    Natural b = 3;
-    Natural c = 5 + 3;
+Natural a = 5;
+Natural b = 3;
+Natural c = 5 + 3;
 
-    std::cout << "Natural: " << a << " + " << b << " = " << c << "\n";
-
-    return c;
-}
+std::cout << "Natural: " << a << " + " << b << " = " << c << "\n";
 ```
 
 # Real 
 Real number is a value that represents a quantity along a continuous line. Real numbers include all the rational numbers, such as integers and fractions, and all the irrational numbers, such as square roots of non-perfect squares and transcendental numbers like pi.
 
 ```cpp
-int main() {
-    Real a = 5.0; // positive real number
-    Real b = -3.0; // negative real number
-    return a / b;
-}
+Real a = 5.0; // positive real number
+Real b = -3.0; // negative real number
+return a / b;
 ```
 
 # Whole
 Whole numbers are non-negative integers, including zero. They are denoted by the symbol W.
 
 ```cpp
-int main() {
-    Whole a = 5; // positive integer
-    Whole b = 3; // negative integer
-    return a - b;
-}
+Whole a = 5; // positive integer
+Whole b = 3; // negative integer
+return a - b;
 ```
 
 # Rational
 Number that can be expressed as a fraction of two integers, where the numerator is an integer and the denominator is a non-zero integer. Rational numbers are denoted by the symbol Q.
 
 ```cpp
-int main() {
-    Rational p(3, 4);
-    Rational q(1, 2);
-    return p + q;
-}
+Rational p(3, 4);
+Rational q(1, 2);
+return p + q;
 ```
 
 # Complex
 A complex number is a number that can be expressed in the form a + bi, where a and b are real numbers and i is the imaginary unit, satisfying i^2 = -1. Complex numbers are denoted by the symbol C.
 
 ```cpp
-int main() {
-    Complex z1(1.0, 2.0);
-    Complex z2(3.0, 4.0);
-    std::cout << "Complex: " << z1 << " * " << z2 << " = " << (z1 * z2) << "\n"; 
-    return z1 * z2;
-}
+Complex z1(1.0, 2.0);
+Complex z2(3.0, 4.0);
+std::cout << "Complex: " << z1 << " * " << z2 << " = " << (z1 * z2) << "\n"; 
+return z1 * z2;
 ```
 
 # Hypercomplex
 Hypercomplex numbers are an extension of complex numbers, which include quaternions and octonions. They are used in various mathematical and physical applications.
 
 ```cpp
-int main() {
-    Hypercomplex h1(1.0, 2.0, 3.0, 4.0);
-    Hypercomplex h2(5.0, 6.0, 7.0, 8.0);
-    std::cout << "Hypercomplex: " << h1 << " * " << h2 << " = " << (h1 * h2) << "\n"; 
-    return h1 * h2;
-}
+Hypercomplex h1(1.0, 2.0, 3.0, 4.0);
+Hypercomplex h2(5.0, 6.0, 7.0, 8.0);
+std::cout << "Hypercomplex: " << h1 << " * " << h2 << " = " << (h1 * h2) << "\n"; 
+return h1 * h2;
 ```
 
 # References

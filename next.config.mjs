@@ -5,6 +5,10 @@ const withMDX = createMDX({
 })
 
 const nextConfig = {
+    output: 'export',
+    images: {
+        unoptimized: true,
+    },
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 }
 

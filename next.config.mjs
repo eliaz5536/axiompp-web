@@ -6,6 +6,11 @@ const withMDX = createMDX({
 
 const nextConfig = {
     output: 'export',
+    // When deploying to a GitHub project Pages site, set basePath and assetPrefix
+    // to the repository name so static assets and client JS load correctly.
+    basePath: '/axiompp-web',
+    assetPrefix: '/axiompp-web',
+    trailingSlash: true,
     images: {
         unoptimized: true,
     },

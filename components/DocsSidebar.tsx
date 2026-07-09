@@ -26,7 +26,7 @@ export default function DocsSidebar({
     }, {})
 
     return (
-        <aside className="sticky top-0 hidden h-screen w-72 shrink-0 border-r border-slate-800/70 bg-slate-950/70 px-5 py-7 backdrop-blur lg:block">
+        <aside className="sticky top-0 hidden min-h-screen w-72 shrink-0 border-r border-slate-800/70 bg-slate-950/70 px-5 py-7 backdrop-blur lg:flex lg:flex-col lg:overflow-y-auto">
             <div className="mb-6">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-cyan-400">Reference</p>
                 <h2 className="mt-2 text-lg font-semibold text-white">Documentation</h2>

@@ -97,12 +97,17 @@ export default function Home() {
               </div>
             </div>
 
+            { /*
             <div className="relative mx-auto w-full max-w-xl">
               <div className="manifold-card">
                 <div className="manifold-grid" />
                 <div className="manifold-glow" />
               </div>
             </div>
+            */
+            }
+
+
           </div>
         </div>
       </section>
@@ -207,74 +212,60 @@ export default function Home() {
           {[
             {
               language: 'C++',
-              title: 'Template Metaprogramming',
-              description: 'Advanced compile-time computation using C++ templates for mathematical structures and algorithms.',
-              code: `#include <iostream>
-#include <vector>
+              title: 'Group',
+              description: 'A simple implementation of a mathematical group with closure, associativity, identity, and inverses.',
+              code: `#include <algebra/Group/Group.hpp>
 
-template<int N>
-struct Factorial {
-    static const int value = N * Factorial<N-1>::value;
-};
-
-template<>
-struct Factorial<0> {
-    static const int value = 1;
-};
-
-int main() {
-    std::cout << "5! = " << Factorial<5>::value << std::endl;
-    return 0;
-}`,
+Group<int> additiveGroup(
+  {0, 1, 2},
+  [](const int& a, const int& b) { return (a + b) % 3; },
+  0
+);
+std::cout << "Group is closed: " << std::boolalpha << additiveGroup.isClosed() << "\n";
+std::cout << "Group is associative: " << additiveGroup.isAssociative() << "\n";
+std::cout << "Group has inverses: " << additiveGroup.hasInverses() << "\n";
+std::cout << "Group order: " << additiveGroup.order() << "\n";`,
               gradient: 'hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10'
             },
             {
-              language: 'Python',
-              title: 'Symbolic Mathematics',
-              description: 'Using SymPy for symbolic computation, equation solving, and mathematical analysis.',
-              code: `import sympy as sp
-# Define symbols
-x, y = sp.symbols('x y')
+              language: 'C++',
+              title: 'Set Theory',
+              description: 'Operations using sets, including union, intersection, difference, and subset testing.',
+              code: `#include <set_theory/Set.hpp>
 
-# Create expressions
-expr = sp.sin(x)**2 + sp.cos(x)**2
-simplified = sp.simplify(expr)
+Set<int> primes{2, 3, 5};
+Set<int> composites{4, 6, 8};
+Set<int> unionSet = primes.unionWith(composites);
+Set<int> intersectionSet = primes.intersectionWith(Set<int>{2, 5, 7});
+Set<int> differenceSet = unionSet.differenceWith(Set<int>{4, 6});
 
-# Solve equations
-equation = sp.Eq(x**2 - 4, 0)
-solutions = sp.solve(equation, x)
-
-print(f"Simplified: {simplified}")
-print(f"Solutions: {solutions}")`,
+std::cout << "Set union: " << unionSet << "\n";
+std::cout << "Set intersection: " << intersectionSet << "\n";
+std::cout << "Set difference: " << differenceSet << "\n";
+std::cout << "Subset test: " << std::boolalpha << primes.isSubsetOf(Set<int>{2, 3, 5, 7}) << "\n";`,
               gradient: 'hover:bg-gradient-to-r hover:from-green-500/10 hover:to-teal-500/10'
             },
             {
               language: 'C++',
-              title: 'Linear Algebra Operations',
-              description: 'Efficient matrix operations and linear algebra computations using Eigen library.',
-              code: `#include <Eigen/Dense>
-#include <iostream>
+              title: 'Matrix',
+              description: 'Efficient matrix operations',
+              code: `#include <algebra/LinearAlgebra.hpp>
 
-int main() {
-    using namespace Eigen;
+Matrix<int> lhs{{1, 2}, {3, 4}};
+Matrix<int> rhs{{5, 6}, {7, 8}};
+Matrix<int> sum = lhs + rhs;
+Matrix<int> product = lhs * rhs;
+Matrix<int> identity = Matrix<int>::identity(2);
 
-    // Create matrices
-    MatrixXd A(3, 3);
-    A << 1, 2, 3,
-         4, 5, 6,
-         7, 8, 9;
+std::cout << "Matrix addition result:\n";
+std::cout << "  (0,0)=" << sum(0, 0) << " (0,1)=" << sum(0, 1) << "\n";
+std::cout << "  (1,0)=" << sum(1, 0) << " (1,1)=" << sum(1, 1) << "\n";
 
-    MatrixXd B = MatrixXd::Identity(3, 3);
-
-    // Matrix operations
-    MatrixXd C = A * B;
-    MatrixXd D = A.inverse();
-
-    std::cout << "A * B =\\n" << C << std::endl;
-    std::cout << "A^-1 =\\n" << D << std::endl;
-
-    return 0;
-}`,
+std::cout << "Matrix multiplication determinant: " << product.determinant() << "\n";
+std::cout << "Identity matrix transpose:\n";
+Matrix<int> transposed = identity.transpose();
+std::cout << "  (0,0)=" << transposed(0, 0) << " (0,1)=" << transposed(0, 1) << "\n";
+std::cout << "  (1,0)=" << transposed(1, 0) << " (1,1)=" << transposed(1, 1) << "\n";`,
               gradient: 'hover:bg-gradient-to-r hover:from-red-500/10 hover:to-orange-500/10'
             }
           ].map((example, i) => (
